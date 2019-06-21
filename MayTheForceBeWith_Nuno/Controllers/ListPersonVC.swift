@@ -18,21 +18,16 @@ class ListPersonVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
         setupViews()
         setupNavigationBar()
-        
+        fetchPersons()
     }
     
     //MARK: - SetupUI
     private func setupViews() {
-        PersonService.shared.getPersons(with: PersonRouter.all) { (persons: [Person], error) in
-            if let error = error {
-                print("Error: ", error.localizedDescription)
-                return
-            }
-            
-            print(persons.count)
-        }
+        
     }
     
     private func setupNavigationBar() {
@@ -43,8 +38,38 @@ class ListPersonVC: UITableViewController {
     }
     
     //MARK: - Helper Methods
-    
+    private func fetchPersons() {
+        PersonService.shared.getPersons(with: PersonRouter.all) { (persons: [Person], error) in
+            if let error = error {
+                print("Error: ", error.localizedDescription)
+                return
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.persons = persons
+                self?.filteredPersons = persons
+                self?.tableView.reloadData()
+            }
+        }
+    }
 }
 
-//MARK: - ListPersonVC Delegate/Datasource
+//MARK: - ListPersonVC TableView Delegate/Datasource
 
+extension ListPersonVC {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredPersons.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = filteredPersons[indexPath.row].name
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let person = filteredPersons[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("selected person ", person)
+    }
+}
