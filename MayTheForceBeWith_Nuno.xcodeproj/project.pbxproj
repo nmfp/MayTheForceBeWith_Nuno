@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1FC30AEF22BCF55300795DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30AEE22BCF55300795DD9 /* AppDelegate.swift */; };
-		1FC30AF122BCF55300795DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30AF022BCF55300795DD9 /* ViewController.swift */; };
+		1FC30AF122BCF55300795DD9 /* ListPersonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30AF022BCF55300795DD9 /* ListPersonVC.swift */; };
 		1FC30AF422BCF55300795DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC30AF222BCF55300795DD9 /* Main.storyboard */; };
 		1FC30AF622BCF55500795DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC30AF522BCF55500795DD9 /* Assets.xcassets */; };
 		1FC30AF922BCF55500795DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC30AF722BCF55500795DD9 /* LaunchScreen.storyboard */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		1FC30AEB22BCF55300795DD9 /* MayTheForceBeWith_Nuno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MayTheForceBeWith_Nuno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC30AEE22BCF55300795DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FC30AF022BCF55300795DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1FC30AF022BCF55300795DD9 /* ListPersonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPersonVC.swift; sourceTree = "<group>"; };
 		1FC30AF322BCF55300795DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FC30AF522BCF55500795DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FC30AF822BCF55500795DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,7 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				1FC30AEE22BCF55300795DD9 /* AppDelegate.swift */,
-				1FC30AF022BCF55300795DD9 /* ViewController.swift */,
+				1FC30B1F22BCF64B00795DD9 /* APIService */,
+				1FC30B1E22BCF63F00795DD9 /* Views */,
+				1FC30B1D22BCF63000795DD9 /* Models */,
+				1FC30B1C22BCF61C00795DD9 /* Controllers */,
 				1FC30AF222BCF55300795DD9 /* Main.storyboard */,
 				1FC30AF522BCF55500795DD9 /* Assets.xcassets */,
 				1FC30AF722BCF55500795DD9 /* LaunchScreen.storyboard */,
@@ -123,6 +126,35 @@
 				1FC30B1022BCF55500795DD9 /* Info.plist */,
 			);
 			path = MayTheForceBeWith_NunoUITests;
+			sourceTree = "<group>";
+		};
+		1FC30B1C22BCF61C00795DD9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1FC30AF022BCF55300795DD9 /* ListPersonVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1FC30B1D22BCF63000795DD9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1FC30B1E22BCF63F00795DD9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1FC30B1F22BCF64B00795DD9 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC30AF122BCF55300795DD9 /* ViewController.swift in Sources */,
+				1FC30AF122BCF55300795DD9 /* ListPersonVC.swift in Sources */,
 				1FC30AEF22BCF55300795DD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JBEYETDGSB;
 				INFOPLIST_FILE = MayTheForceBeWith_Nuno/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,6 +486,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JBEYETDGSB;
 				INFOPLIST_FILE = MayTheForceBeWith_Nuno/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
