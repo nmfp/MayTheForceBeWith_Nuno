@@ -12,7 +12,7 @@ struct Person: Decodable {
     var name: String
     var height: String
     var mass: String
-    var airColor: String
+    var hairColor: String
     var skinColor: String
     var eyeColor: String
     var birthYear: String
@@ -30,7 +30,7 @@ struct Person: Decodable {
         case name
         case height
         case mass
-        case airColor
+        case hairColor
         case skinColor
         case eyeColor
         case birthYear
@@ -53,7 +53,7 @@ struct Person: Decodable {
         name = try container.decode(String.self, forKey: .name)
         height = try container.decode(String.self, forKey: .height)
         mass = try container.decode(String.self, forKey: .mass)
-        airColor = try container.decode(String.self, forKey: .airColor)
+        hairColor = try container.decode(String.self, forKey: .hairColor)
         skinColor = try container.decode(String.self, forKey: .skinColor)
         eyeColor = try container.decode(String.self, forKey: .eyeColor)
         birthYear = try container.decode(String.self, forKey: .birthYear)
@@ -79,4 +79,11 @@ struct Person: Decodable {
         }
         url = try container.decode(String.self, forKey: .url)
     }
+}
+
+struct PersonResponse: Decodable {
+    var count: Int
+    var next: String?
+    var previous: String?
+    var results: [Person]
 }

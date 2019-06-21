@@ -15,6 +15,9 @@
 		1FC30B0422BCF55500795DD9 /* MayTheForceBeWith_NunoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B0322BCF55500795DD9 /* MayTheForceBeWith_NunoTests.swift */; };
 		1FC30B0F22BCF55500795DD9 /* MayTheForceBeWith_NunoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B0E22BCF55500795DD9 /* MayTheForceBeWith_NunoUITests.swift */; };
 		1FC30B2122BCFC3E00795DD9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B2022BCFC3E00795DD9 /* Person.swift */; };
+		1FC30B2822BD041400795DD9 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B2722BD041400795DD9 /* APIService.swift */; };
+		1FC30B2B22BD180700795DD9 /* PersonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B2A22BD180700795DD9 /* PersonRouter.swift */; };
+		1FC30B2E22BD21F800795DD9 /* PersonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B2D22BD21F800795DD9 /* PersonService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		1FC30B0E22BCF55500795DD9 /* MayTheForceBeWith_NunoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MayTheForceBeWith_NunoUITests.swift; sourceTree = "<group>"; };
 		1FC30B1022BCF55500795DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FC30B2022BCFC3E00795DD9 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		1FC30B2722BD041400795DD9 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		1FC30B2A22BD180700795DD9 /* PersonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRouter.swift; sourceTree = "<group>"; };
+		1FC30B2D22BD21F800795DD9 /* PersonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +105,10 @@
 		1FC30AED22BCF55300795DD9 /* MayTheForceBeWith_Nuno */ = {
 			isa = PBXGroup;
 			children = (
+				1FC30B2722BD041400795DD9 /* APIService.swift */,
+				1FC30B2C22BD21E200795DD9 /* Services */,
 				1FC30AEE22BCF55300795DD9 /* AppDelegate.swift */,
-				1FC30B1F22BCF64B00795DD9 /* APIService */,
+				1FC30B2622BD040500795DD9 /* APIService */,
 				1FC30B1E22BCF63F00795DD9 /* Views */,
 				1FC30B1D22BCF63000795DD9 /* Models */,
 				1FC30B1C22BCF61C00795DD9 /* Controllers */,
@@ -153,11 +161,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		1FC30B1F22BCF64B00795DD9 /* APIService */ = {
+		1FC30B2622BD040500795DD9 /* APIService */ = {
 			isa = PBXGroup;
 			children = (
+				1FC30B2922BD156B00795DD9 /* Routers */,
 			);
 			path = APIService;
+			sourceTree = "<group>";
+		};
+		1FC30B2922BD156B00795DD9 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				1FC30B2A22BD180700795DD9 /* PersonRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		1FC30B2C22BD21E200795DD9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1FC30B2D22BD21F800795DD9 /* PersonService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,8 +316,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FC30B2B22BD180700795DD9 /* PersonRouter.swift in Sources */,
 				1FC30B2122BCFC3E00795DD9 /* Person.swift in Sources */,
+				1FC30B2E22BD21F800795DD9 /* PersonService.swift in Sources */,
 				1FC30AF122BCF55300795DD9 /* ListPersonVC.swift in Sources */,
+				1FC30B2822BD041400795DD9 /* APIService.swift in Sources */,
 				1FC30AEF22BCF55300795DD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,7 +25,14 @@ class ListPersonVC: UITableViewController {
     
     //MARK: - SetupUI
     private func setupViews() {
-        
+        PersonService.shared.getPersons(with: PersonRouter.all) { (persons: [Person], error) in
+            if let error = error {
+                print("Error: ", error.localizedDescription)
+                return
+            }
+            
+            print(persons.count)
+        }
     }
     
     private func setupNavigationBar() {
