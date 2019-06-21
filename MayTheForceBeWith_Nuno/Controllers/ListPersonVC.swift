@@ -11,12 +11,13 @@ import UIKit
 class ListPersonVC: UITableViewController {
     
     //MARK: - Properties
-    
+    var persons = [Person]()
+    var filteredPersons = [Person]()
     
     //MARK: - System Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        
         setupViews()
         setupNavigationBar()
         
@@ -29,6 +30,9 @@ class ListPersonVC: UITableViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Persons"
+        
+        //TODO: Need to implement search engine
+        
     }
     
     //MARK: - Helper Methods

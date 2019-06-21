@@ -14,6 +14,7 @@
 		1FC30AF922BCF55500795DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC30AF722BCF55500795DD9 /* LaunchScreen.storyboard */; };
 		1FC30B0422BCF55500795DD9 /* MayTheForceBeWith_NunoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B0322BCF55500795DD9 /* MayTheForceBeWith_NunoTests.swift */; };
 		1FC30B0F22BCF55500795DD9 /* MayTheForceBeWith_NunoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B0E22BCF55500795DD9 /* MayTheForceBeWith_NunoUITests.swift */; };
+		1FC30B2122BCFC3E00795DD9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30B2022BCFC3E00795DD9 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		1FC30B0A22BCF55500795DD9 /* MayTheForceBeWith_NunoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MayTheForceBeWith_NunoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC30B0E22BCF55500795DD9 /* MayTheForceBeWith_NunoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MayTheForceBeWith_NunoUITests.swift; sourceTree = "<group>"; };
 		1FC30B1022BCF55500795DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FC30B2022BCFC3E00795DD9 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		1FC30B1D22BCF63000795DD9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1FC30B2022BCFC3E00795DD9 /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FC30B2122BCFC3E00795DD9 /* Person.swift in Sources */,
 				1FC30AF122BCF55300795DD9 /* ListPersonVC.swift in Sources */,
 				1FC30AEF22BCF55300795DD9 /* AppDelegate.swift in Sources */,
 			);
