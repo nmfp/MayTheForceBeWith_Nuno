@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1FA6135A22BD47540049BB20 /* PersonDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6135922BD47540049BB20 /* PersonDetailVC.swift */; };
 		1FA6135D22BD4AAD0049BB20 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6135C22BD4AAD0049BB20 /* Extensions+UIView.swift */; };
+		1FA6135F22BE38D80049BB20 /* PersonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6135E22BE38D80049BB20 /* PersonResponse.swift */; };
 		1FC30AEF22BCF55300795DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30AEE22BCF55300795DD9 /* AppDelegate.swift */; };
 		1FC30AF122BCF55300795DD9 /* ListPersonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC30AF022BCF55300795DD9 /* ListPersonVC.swift */; };
 		1FC30AF422BCF55300795DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC30AF222BCF55300795DD9 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		1FA6135922BD47540049BB20 /* PersonDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailVC.swift; sourceTree = "<group>"; };
 		1FA6135C22BD4AAD0049BB20 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		1FA6135E22BE38D80049BB20 /* PersonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonResponse.swift; sourceTree = "<group>"; };
 		1FC30AEB22BCF55300795DD9 /* MayTheForceBeWith_Nuno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MayTheForceBeWith_Nuno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC30AEE22BCF55300795DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FC30AF022BCF55300795DD9 /* ListPersonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPersonVC.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				1FC30B2022BCFC3E00795DD9 /* Person.swift */,
+				1FA6135E22BE38D80049BB20 /* PersonResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				1FC30AF122BCF55300795DD9 /* ListPersonVC.swift in Sources */,
 				1FC30B2822BD041400795DD9 /* APIService.swift in Sources */,
 				1FA6135D22BD4AAD0049BB20 /* Extensions+UIView.swift in Sources */,
+				1FA6135F22BE38D80049BB20 /* PersonResponse.swift in Sources */,
 				1FC30AEF22BCF55300795DD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
