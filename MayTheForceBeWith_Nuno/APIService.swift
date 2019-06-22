@@ -49,12 +49,8 @@ extension APIService {
     }
     
     func fetchData<T: Decodable>(with request: URLRequest, completion: @escaping (NetworkResponse<T>) -> ()) {
-        guard let requestUrl = request.url else {
-            completion(.error(NetworkError.badUrl))
-            return
-        }
         
-        session.dataTask(with: requestUrl) { (data, resp, err) in
+        session.dataTask(with: request) { (data, resp, err) in
             guard err == nil else {
                 completion(.error(err!))
                 return
