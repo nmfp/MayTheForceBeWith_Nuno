@@ -11,14 +11,22 @@ import UIKit
 class ListPersonVC: UITableViewController {
     
     //MARK: - Properties
-    var persons = [Person]()
-    var filteredPersons = [Person]()
+    private var persons = [Person]()
+    private var filteredPersons = [Person]()
+    private var elementsPerPage = 10
+    private var hasNext: Bool = false
+    
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        indicator.color = .gray
+        indicator.startAnimating()
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     //MARK: - System Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         setupViews()
         setupNavigationBar()
@@ -27,7 +35,8 @@ class ListPersonVC: UITableViewController {
     
     //MARK: - SetupUI
     private func setupViews() {
-        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.tableFooterView = loadingIndicator
     }
     
     private func setupNavigationBar() {
@@ -38,17 +47,22 @@ class ListPersonVC: UITableViewController {
     }
     
     //MARK: - Helper Methods
-    private func fetchPersons() {
-        PersonService.shared.getPersons(with: PersonRouter.all) { (persons: [Person], error) in
+    private func fetchPersons(_ page: Int = 1) {
+        print("Fetching page: ", page)
+        PersonService.shared.getPersons(with: PersonRouter.page(page)) { (response, error) in
             if let error = error {
                 print("Error: ", error.localizedDescription)
                 return
             }
             
-            DispatchQueue.main.async { [weak self] in
-                self?.persons = persons
-                self?.filteredPersons = persons
-                self?.tableView.reloadData()
+            guard let personResponse = response else { return }
+            
+            self.hasNext = personResponse.hasNextPage
+            self.persons += personResponse.results
+            self.filteredPersons = self.persons
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
@@ -70,6 +84,18 @@ extension ListPersonVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let person = filteredPersons[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        print("selected person ", person)
+        let detailVC = PersonDetailVC(person: person)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard indexPath.row == filteredPersons.count - 1 else { return }
+        if hasNext {
+            let nextPage = persons.count.quotientAndRemainder(dividingBy: elementsPerPage).quotient + 1
+            fetchPersons(nextPage)
+        } else {
+            loadingIndicator.stopAnimating()
+            tableView.tableFooterView = nil
+        }
     }
 }
