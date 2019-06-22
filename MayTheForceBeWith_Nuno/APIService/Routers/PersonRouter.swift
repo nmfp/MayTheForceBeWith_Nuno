@@ -34,7 +34,7 @@ extension NetworkRouter {
 }
 
 enum PersonRouter: NetworkRouter {
-    case all, page(Int), search(String)
+    case all, page(Int), search(String, Int?)
     
     var baseUrl: String {
         return "https://swapi.co/"
@@ -52,9 +52,10 @@ enum PersonRouter: NetworkRouter {
             return [
                 URLQueryItem(name: "page", value: "\(page)")
             ]
-        case .search(let name):
+        case .search(let name, let page):
             return [
-                URLQueryItem(name: "search", value: name)
+                URLQueryItem(name: "search", value: name),
+                URLQueryItem(name: "page", value: page == nil ? "" : "\(page!)")
             ]
         }
     }

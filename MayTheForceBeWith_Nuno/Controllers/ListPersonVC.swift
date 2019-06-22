@@ -14,7 +14,11 @@ class ListPersonVC: UITableViewController {
     private var persons = [Person]()
     private var filteredPersons = [Person]()
     private var elementsPerPage = 10
-    private var hasNext: Bool = false
+    private var hasNext = false
+    private var fetchedAll = false
+    private var timer: Timer?
+    private var isSearching = false
+    private var searchController: UISearchController!
     
     private let loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .whiteLarge)
@@ -44,19 +48,37 @@ class ListPersonVC: UITableViewController {
         
         //TODO: Need to implement search engine
         
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.searchResultsUpdater = self
+        definesPresentationContext = true
+        
+        if #available(iOS 11, *) {
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
     }
     
     //MARK: - Helper Methods
     private func fetchPersons(_ page: Int = 1) {
         print("Fetching page: ", page)
-        PersonService.shared.getPersons(with: PersonRouter.page(page)) { (response, error) in
+        
+        if isSearching {
+            searchPersons(by: searchController.searchBar.text ?? "", page: page)
+            return
+        }
+        
+        PersonService.shared.getPersons(in: page) { (response, error) in
             if let error = error {
                 print("Error: ", error.localizedDescription)
                 return
             }
             
             guard let personResponse = response else { return }
-            
+            self.fetchedAll = !personResponse.hasNextPage
             self.hasNext = personResponse.hasNextPage
             self.persons += personResponse.results
             self.filteredPersons = self.persons
@@ -65,6 +87,59 @@ class ListPersonVC: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    private func searchPersons(by name: String, page: Int? = nil) {
+        guard !name.isEmpty else {
+            resetSearchedResults()
+            return
+        }
+        
+        guard !fetchedAll else {
+            filteredPersons = persons.filter({ $0.name.lowercased().contains(name.lowercased()) })
+            tableView.reloadData()
+            print("Ja descarregou todos e nao faz pedido a api")
+            return
+        }
+        
+        print("Ainda faltam personagens para descarregar e faz pedido a api")
+        
+        if page == nil {
+            filteredPersons.removeAll()
+        }
+        
+        PersonService.shared.searchPersons(by: name, page: page) { (response, error) in
+            if let error = error {
+                print("Error: ", error.localizedDescription)
+                return
+            }
+            
+            guard let personResponse = response else { return }
+            
+            self.hasNext = personResponse.hasNextPage
+            self.filteredPersons += personResponse.results
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    @objc func handleSearch() {
+        searchPersons(by: searchController.searchBar.text ?? "")
+    }
+    
+    private func resetSearchedResults() {
+        isSearching = false
+        hasNext = !fetchedAll
+        filteredPersons = persons
+        loadingIndicator.startAnimating()
+        tableView.tableFooterView = loadingIndicator
+        tableView.reloadData()
+    }
+    
+    deinit {
+        timer = nil
     }
 }
 
@@ -90,12 +165,47 @@ extension ListPersonVC {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard indexPath.row == filteredPersons.count - 1 else { return }
+        
         if hasNext {
-            let nextPage = persons.count.quotientAndRemainder(dividingBy: elementsPerPage).quotient + 1
+            let nextPage = filteredPersons.count.quotientAndRemainder(dividingBy: elementsPerPage).quotient + 1
             fetchPersons(nextPage)
-        } else {
-            loadingIndicator.stopAnimating()
-            tableView.tableFooterView = nil
         }
+        else {
+            loadingIndicator.stopAnimating()
+            tableView.tableFooterView = UIView()
+        }
+    }
+}
+
+extension ListPersonVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        isSearching = !searchText.isEmpty
+        
+        timer?.invalidate()
+        
+        if #available(iOS 10, *) {
+            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
+                self.searchPersons(by: searchText)
+            }
+        } else {
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleSearch), userInfo: nil, repeats: false)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("canceled")
+        resetSearchedResults()
+    }
+}
+
+extension ListPersonVC: UISearchControllerDelegate {
+    
+}
+
+extension ListPersonVC: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+        print(searchController.searchBar.text)
     }
 }

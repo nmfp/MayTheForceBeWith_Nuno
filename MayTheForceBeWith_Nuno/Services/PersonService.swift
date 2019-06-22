@@ -19,7 +19,15 @@ class PersonService: APIService {
         return _shared!
     }
     
-    func getPersons(with router: NetworkRouter, completion: @escaping (PersonResponse?, NetworkError?) -> ()) {
+    func getPersons(in page: Int, completion: @escaping (PersonResponse?, NetworkError?) -> ()) {
+        fetchPersons(with: PersonRouter.page(page), completion: completion)
+    }
+    
+    func searchPersons(by name: String, page: Int? = nil, completion: @escaping (PersonResponse?, NetworkError?) -> ()) {
+        fetchPersons(with: PersonRouter.search(name, page), completion: completion)
+    }
+    
+    private func fetchPersons (with router: NetworkRouter, completion: @escaping (PersonResponse?, NetworkError?) -> ()) {
         let request = router.request
         fetchData(with: request) { (response: NetworkResponse<PersonResponse>) in
             switch response {
