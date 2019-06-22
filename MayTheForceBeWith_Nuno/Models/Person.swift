@@ -86,4 +86,12 @@ struct PersonResponse: Decodable {
     var next: String?
     var previous: String?
     var results: [Person]
+    
+    var hasNextPage: Bool {
+        return next != nil
+    }
+    
+    var hasPreviousPage: Bool {
+        return previous != nil
+    }
 }

@@ -19,14 +19,14 @@ class PersonService: APIService {
         return _shared!
     }
     
-    func getPersons(with router: NetworkRouter, completion: @escaping ([Person], NetworkError?) -> ()) {
+    func getPersons(with router: NetworkRouter, completion: @escaping (PersonResponse?, NetworkError?) -> ()) {
         let request = router.request
         fetchData(with: request) { (response: NetworkResponse<PersonResponse>) in
             switch response {
             case .success(let response):
-                completion(response.results, nil)
+                completion(response, nil)
             case .error(let error):
-                completion([], error as? NetworkError)
+                completion(nil, error as? NetworkError)
             }
         }
     }
