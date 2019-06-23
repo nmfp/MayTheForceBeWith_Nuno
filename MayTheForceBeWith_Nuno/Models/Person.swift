@@ -25,6 +25,7 @@ struct Person: Codable {
     var created: Date = Date()
     var edited: Date = Date()
     var url: String
+    var isFavourite: Bool = false
     
     private enum CodingKeys: String, CodingKey {
         case name
@@ -110,5 +111,32 @@ struct Person: Codable {
         }
         
         try container.encode(url, forKey: .url)
+    }
+    
+    mutating func setAsFavourite() {
+        isFavourite = !isFavourite
+    }
+}
+
+//For tests purpose
+extension Person {
+    init(name: String) {
+        self.name = name
+        self.height = ""
+        self.mass = ""
+        self.hairColor = ""
+        self.skinColor = ""
+        self.eyeColor = ""
+        self.birthYear = ""
+        self.gender = ""
+        self.homeworld = ""
+        self.films = []
+        self.species = []
+        self.vehicles = []
+        self.starships = []
+        self.created = Date()
+        self.edited = Date()
+        self.url = ""
+        self.isFavourite = false
     }
 }

@@ -41,6 +41,8 @@ class PersonDetailVC: UIViewController {
         return label
     }()
     
+    weak var delegate: FavouriteDeletegate?
+    
     //MARK: - Initializers
     init(person: Person) {
         self.person = person
@@ -91,17 +93,12 @@ class PersonDetailVC: UIViewController {
     
     //MARK: - Helper Methods
     @objc func markAsFavourite() {
-        print("\(person)")
-        
-        FavouriteService.shared.saveFavourite(person: person) { (response, error) in
+        FavouriteService.shared.saveFavourite(person: person) { (_, error) in
             if let error = error {
                 print("Error:", error.localizedDescription)
                 return
             }
-            
-            guard let response = response else { return }
-            
-            print(response)
+            self.delegate?.saveFavourite(person: self.person)
         }
     }
     

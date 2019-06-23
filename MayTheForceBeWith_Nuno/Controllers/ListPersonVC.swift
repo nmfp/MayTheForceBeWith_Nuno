@@ -152,7 +152,9 @@ extension ListPersonVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = filteredPersons[indexPath.row].name
+        let person = filteredPersons[indexPath.row]
+        cell.textLabel?.text = person.name
+        cell.accessoryType = person.isFavourite ? .checkmark : .none
         return cell
     }
     
@@ -160,6 +162,7 @@ extension ListPersonVC {
         let person = filteredPersons[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = PersonDetailVC(person: person)
+        detailVC.delegate = self
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
@@ -208,4 +211,27 @@ extension ListPersonVC: UISearchResultsUpdating {
         // TODO
         print(searchController.searchBar.text)
     }
+}
+
+extension ListPersonVC: FavouriteDeletegate {
+    func saveFavourite(person: Person) {
+        if let index = persons.firstIndex(where: { $0.name == person.name}) {
+            var favourite = person
+            favourite.setAsFavourite()
+            persons[index] = favourite
+            
+            if !isSearching {
+                filteredPersons[index] = favourite
+            }
+            
+            DispatchQueue.main.async {
+                let indexToReload = IndexPath(row: index, section: 0)
+                self.tableView.reloadRows(at: [indexToReload], with: .automatic)
+            }
+        }
+    }
+}
+
+protocol FavouriteDeletegate: class {
+    func saveFavourite(person: Person)
 }
