@@ -46,12 +46,9 @@ class ListPersonVC: UITableViewController {
     private func setupNavigationBar() {
         navigationItem.title = "Persons"
         
-        //TODO: Need to implement search engine
-        
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
-//        searchController.searchResultsUpdater = self
         definesPresentationContext = true
         
         if #available(iOS 11, *) {
@@ -118,6 +115,10 @@ class ListPersonVC: UITableViewController {
             
             self.hasNext = personResponse.hasNextPage
             self.filteredPersons += personResponse.results
+            
+            if personResponse.results.isEmpty {
+                self.loadingIndicator.stopAnimating()
+            }
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -196,20 +197,7 @@ extension ListPersonVC: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("canceled")
         resetSearchedResults()
-    }
-}
-
-extension ListPersonVC: UISearchControllerDelegate {
-    
-}
-
-extension ListPersonVC: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        // TODO
-        print(searchController.searchBar.text)
     }
 }
 
