@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Person: Decodable {
+struct Person: Codable {
     var name: String
     var height: String
     var mass: String
@@ -78,5 +78,37 @@ struct Person: Decodable {
             edited = dateFormatter?.date(from: editedDateString) ?? Date()
         }
         url = try container.decode(String.self, forKey: .url)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(name, forKey: .name)
+        try container.encode(height, forKey: .height)
+        try container.encode(mass, forKey: .mass)
+        try container.encode(hairColor, forKey: .hairColor)
+        try container.encode(skinColor, forKey: .skinColor)
+        try container.encode(eyeColor, forKey: .eyeColor)
+        try container.encode(birthYear, forKey: .birthYear)
+        try container.encode(gender, forKey: .gender)
+        try container.encode(homeworld, forKey: .homeworld)
+        try container.encode(films, forKey: .films)
+        try container.encode(species, forKey: .species)
+        try container.encode(vehicles, forKey: .vehicles)
+        try container.encode(starships, forKey: .starships)
+        
+        var dateFormatter: DateFormatter?
+        dateFormatter = DateFormatter()
+        dateFormatter?.dateFormat = "HH:mm dd/mm/yyyy"
+        
+        if let createdString = dateFormatter?.string(from: created) {
+            try container.encode(createdString, forKey: .created)
+        }
+        
+        if let editedString = dateFormatter?.string(from: edited) {
+            try container.encode(editedString, forKey: .edited)
+        }
+        
+        try container.encode(url, forKey: .url)
     }
 }
