@@ -92,6 +92,17 @@ class PersonDetailVC: UIViewController {
     //MARK: - Helper Methods
     @objc func markAsFavourite() {
         print("\(person)")
+        
+        FavouriteService.shared.saveFavourite(person: person) { (response, error) in
+            if let error = error {
+                print("Error:", error.localizedDescription)
+                return
+            }
+            
+            guard let response = response else { return }
+            
+            print(response)
+        }
     }
     
 }

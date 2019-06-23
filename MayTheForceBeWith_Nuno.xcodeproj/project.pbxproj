@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F373D7C22BECC5B005929C2 /* FavouriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F373D7B22BECC5B005929C2 /* FavouriteRouter.swift */; };
+		1F373D7E22BEE59D005929C2 /* FavouriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F373D7D22BEE59D005929C2 /* FavouriteService.swift */; };
+		1F373D8022BEEDB9005929C2 /* FavouriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F373D7F22BEEDB9005929C2 /* FavouriteResponse.swift */; };
 		1FA6135A22BD47540049BB20 /* PersonDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6135922BD47540049BB20 /* PersonDetailVC.swift */; };
 		1FA6135D22BD4AAD0049BB20 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6135C22BD4AAD0049BB20 /* Extensions+UIView.swift */; };
 		1FA6135F22BE38D80049BB20 /* PersonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6135E22BE38D80049BB20 /* PersonResponse.swift */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F373D7B22BECC5B005929C2 /* FavouriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRouter.swift; sourceTree = "<group>"; };
+		1F373D7D22BEE59D005929C2 /* FavouriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteService.swift; sourceTree = "<group>"; };
+		1F373D7F22BEEDB9005929C2 /* FavouriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteResponse.swift; sourceTree = "<group>"; };
 		1FA6135922BD47540049BB20 /* PersonDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailVC.swift; sourceTree = "<group>"; };
 		1FA6135C22BD4AAD0049BB20 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		1FA6135E22BE38D80049BB20 /* PersonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonResponse.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 			children = (
 				1FC30B2022BCFC3E00795DD9 /* Person.swift */,
 				1FA6135E22BE38D80049BB20 /* PersonResponse.swift */,
+				1F373D7F22BEEDB9005929C2 /* FavouriteResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				1FC30B2A22BD180700795DD9 /* PersonRouter.swift */,
+				1F373D7B22BECC5B005929C2 /* FavouriteRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -198,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				1FC30B2D22BD21F800795DD9 /* PersonService.swift */,
+				1F373D7D22BEE59D005929C2 /* FavouriteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -339,9 +348,12 @@
 				1FC30B2E22BD21F800795DD9 /* PersonService.swift in Sources */,
 				1FC30AF122BCF55300795DD9 /* ListPersonVC.swift in Sources */,
 				1FC30B2822BD041400795DD9 /* APIService.swift in Sources */,
+				1F373D7C22BECC5B005929C2 /* FavouriteRouter.swift in Sources */,
 				1FA6135D22BD4AAD0049BB20 /* Extensions+UIView.swift in Sources */,
 				1FA6135F22BE38D80049BB20 /* PersonResponse.swift in Sources */,
 				1FC30AEF22BCF55300795DD9 /* AppDelegate.swift in Sources */,
+				1F373D8022BEEDB9005929C2 /* FavouriteResponse.swift in Sources */,
+				1F373D7E22BEE59D005929C2 /* FavouriteService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

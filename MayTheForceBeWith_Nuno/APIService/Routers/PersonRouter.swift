@@ -15,12 +15,14 @@ protocol NetworkRouter {
     var method: String { get }
     var request: URLRequest { get }
     var url: URL? { get }
+    var body: Data? { get }
 }
 
 extension NetworkRouter {
     var request: URLRequest {
         guard let url = url else { fatalError() }
         var request = URLRequest(url: url)
+        request.httpBody = body
         request.httpMethod = method
         return request
     }
@@ -42,6 +44,10 @@ enum PersonRouter: NetworkRouter {
     
     var path: String {
         return "/api/people/"
+    }
+    
+    var body: Data? {
+        return nil
     }
     
     var parameters: [URLQueryItem]? {
